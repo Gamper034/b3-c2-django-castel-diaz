@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Ajout de l'application password_manager
+    'password_manager',
 ]
 
 MIDDLEWARE = [
