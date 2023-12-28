@@ -19,9 +19,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    #Vue liste des mots de passe
+    path("admin/", admin.site.urls),
+    # Vue liste des mots de passe
     path("", views.list, name="list"),
-    #Vue ajout d'un mot de passe
+    # Vue ajout d'un mot de passe
     path("add_password/", views.add_password, name="add_password"),
+    path("delete_password/<int:id>", views.delete_password, name="delete_password"),
 ]

@@ -3,16 +3,18 @@ from .models import Password
 from django.template import loader
 from django.shortcuts import render, redirect
 
+
 def list(request):
     password_list = Password.objects.all()
     context = {"password_list": password_list}
     return render(request, "list.html", context)
     # return render(request, "password_manager/list.html")
 
+
 def add_password(request):
     if request.method == "GET":
         return render(request, "add_password.html")
-    else :
+    else:
         name = request.POST.get("name")
         url = request.POST.get("url")
         login = request.POST.get("login")
@@ -21,3 +23,9 @@ def add_password(request):
         print(password)
         password.save()
         return redirect("list")
+
+
+def delete_password(request, id):
+    password = Password.objects.get(id=id)
+    password.delete()
+    return redirect("list")
