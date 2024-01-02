@@ -25,4 +25,5 @@ urlpatterns = [
     # Vue ajout d'un mot de passe
     path("add_password/", views.add_password, name="add_password"),
     path("delete_password/<int:id>", views.delete_password, name="delete_password"),
+    path("update_password/<int:id>", views.update_password, name="update_password"),
 ]
