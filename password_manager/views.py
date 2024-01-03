@@ -29,3 +29,17 @@ def delete_password(request, id):
     password = Password.objects.get(id=id)
     password.delete()
     return redirect("list")
+
+
+def update_password(request, id):
+    password = Password.objects.get(id=id)
+    if request.method == "GET":
+        context = {"password": password}
+        return render(request, "update_password.html", context)
+    else:
+        password.name = request.POST.get("name")
+        password.url = request.POST.get("url")
+        password.login = request.POST.get("login")
+        password.password = request.POST.get("password")
+        password.save()
+        return redirect("list")
