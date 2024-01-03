@@ -21,7 +21,7 @@ Password Manager
     ```
     pip install django-simple-bulma
     ```
-6. Effectuez les migrations :
+4. Effectuez les migrations :
     ```
     python manage.py migrate
     ```
