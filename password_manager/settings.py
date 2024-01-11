@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +41,8 @@ INSTALLED_APPS = [
     # Ajout de l'application password_manager
     'password_manager',
     # Ajout du framework Bulma
-    'django_simple_bulma',
+    # 'django_simple_bulma',
+    # 'django-bulma',
 ]
 
 MIDDLEWARE = [
@@ -119,8 +121,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Ajout de la configuration de Django Simple Bulma
 STATICFILES_FINDERS = [
@@ -129,7 +132,7 @@ STATICFILES_FINDERS = [
   'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 
   # Now add our custom SimpleBulma one.
-  'django_simple_bulma.finders.SimpleBulmaFinder',
+#   'django_simple_bulma.finders.SimpleBulmaFinder',
 ]
 
 # Default primary key field type

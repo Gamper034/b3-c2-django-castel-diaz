@@ -2,12 +2,8 @@
 <html>
 
     <head>
-        <!-- ... -->
-        <!-- Ajout de Bulma -->
-        {% load django_simple_bulma %} 
-        {% bulma %}
-        {% load static %}
-
+       {% load static %}
+        <link href="{% static 'bulma/css/bulma.css' %}" rel="stylesheet">
         <title>Password Manager</title>
         <link rel="icon" href="{% static 'logo_header.png' %}" type="image/x-icon"/>
         <!-- ... -->
