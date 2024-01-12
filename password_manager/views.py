@@ -57,3 +57,18 @@ def export_passwords_csv(request):
         writer.writerow(password)
 
     return response
+
+
+def import_passwords_csv(request):
+    if request.method == 'POST':
+        csv_file = request.FILES['file']
+        decoded_file = csv_file.read().decode('utf-8').splitlines()
+        reader = csv.DictReader(decoded_file)
+
+        for row in reader:
+            password = Password(name=row['Name'], url=row['URL'], login=row['Login'], password=row['Password'])
+            password.save()
+
+        return redirect('list')
+    else:
+        return HttpResponse('Only POST method is allowed')
