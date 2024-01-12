@@ -2,9 +2,11 @@ from django.http import HttpResponse
 from .models import Password
 from django.template import loader
 from django.shortcuts import render, redirect
+
 import csv
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -67,6 +69,7 @@ def update_password(request, id):
         password.password = request.POST.get("password")
         password.save()
         return redirect("list")
+
 
 @login_required
 def export_passwords_csv(request):
