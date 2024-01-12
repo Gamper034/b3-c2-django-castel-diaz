@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 
 
 def list(request):
-    password_list = Password.objects.all()
+    password_list = Password.objects.order_by("url")
     context = {"password_list": password_list}
     return render(request, "list.html", context)
     # return render(request, "password_manager/list.html")

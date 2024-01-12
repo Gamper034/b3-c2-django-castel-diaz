@@ -5,22 +5,27 @@
       <h1 class="title">Liste des mots de passes</h1>
       <hr />
     </div>
+
+    {% if password_list %}
+    {% regroup password_list by url as password_grouped_list %}
+    {% for url in password_grouped_list%}
+
+
+    <h2 class="title">{{url.grouper}}</h2>
     <table class="table is-bordered">
       <thead>
         <tr>
           <th>Name</th>
           <th>Login</th>
-          <th>Url</th>
           <th>Password</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        {% if password_list %} {% for password in password_list %}
+         {% for password in url.list %}
         <tr>
           <td>{{ password.name }}</td>
           <td>{{ password.login }}</td>
-          <td>{{ password.url }}</td>
 
                     <td>
                         <span id="passwordField{{ password.id }}">••••••••••••</span>
@@ -45,8 +50,13 @@
                             </svg></a>
                     </td>
                 </tr>
+                
+                
                 {% endfor %}
-                {% else %}
+            </tbody>
+        </table>
+        {% endfor %}
+        {% else %}
                 <tr>
                     <th colspan="5">
                         <span style="font-weight: 300;">Aucun mot de passe n'a été ajouté.</span>
@@ -54,8 +64,6 @@
                 </tr>
                     
                 {% endif %}
-            </tbody>
-        </table>
     </div>
 </div>
 
@@ -69,5 +77,6 @@
       passwordField.textContent = "••••••••••••";
     }
   }
+
 </script>
 {% endblock %}
