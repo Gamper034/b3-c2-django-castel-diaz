@@ -79,7 +79,6 @@
     </table>
   </div>
 </div>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <script>
   // Fonction pour afficher le mot de passe en clair
   function togglePasswordVisibility(id, password) {
@@ -91,20 +90,7 @@
     }
   }
 
-  // $('#download-csv').click(function() {
-  //   $.ajax({
-  //     url: 'export/csv/',
-  //     method: 'GET',
-  //     success: function(data) {
-  //       var blob = new Blob([data], { type: 'text/csv' });
-  //       var link = document.createElement('a');
-  //       link.href = window.URL.createObjectURL(blob);
-  //       link.download = 'passwords.csv';
-  //       link.click();
-  //     }
-  //   });
-  // });
-
+  // Fonction pour afficher le formulaire d'import de fichier CSV
   document.querySelector('button[type="submit"]').addEventListener('click', function (e) {
     e.preventDefault();
     var fileInput = document.querySelector('input[type="file"]');
