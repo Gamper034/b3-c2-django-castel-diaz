@@ -20,8 +20,15 @@ from . import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+
+    # Vue login
+    path("", views.login_view, name="login"),
+    # Vue login_user
+    path("login_user/", views.login_user, name="login_user"),
+    # Vue logout
+    path("logout/", views.logout_view, name="logout"),
     # Vue liste des mots de passe
-    path("", views.list, name="list"),
+    path("list/", views.list, name="list"),
     # Vue ajout d'un mot de passe
     path("add_password/", views.add_password, name="add_password"),
     path("delete_password/<int:id>", views.delete_password, name="delete_password"),

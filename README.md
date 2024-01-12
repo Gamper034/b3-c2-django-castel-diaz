@@ -1,6 +1,6 @@
-# Nom du projet
+# Password Manager
 
-Password Manager
+Projet sur la création d'un gestionnaire de mot de passe en Django
 
 ## Prérequis
 
@@ -20,6 +20,10 @@ Password Manager
 3. Effectuez les migrations :
     ```
     python manage.py migrate
+    ```
+4. Créez un compte en ligne de commande pour vous conencter:
+    ```
+    python3 manage.py createsuperuser
     ```
 
 ## Utilisation
