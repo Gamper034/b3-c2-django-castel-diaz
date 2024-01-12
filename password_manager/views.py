@@ -2,7 +2,6 @@ from django.http import HttpResponse
 from .models import Password
 from django.template import loader
 from django.shortcuts import render, redirect
-import csv
 
 
 def list(request):
@@ -44,31 +43,3 @@ def update_password(request, id):
         password.password = request.POST.get("password")
         password.save()
         return redirect("list")
-
-def export_passwords_csv(request):
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="passwords.csv"'
-
-    writer = csv.writer(response)
-    writer.writerow(['Name', 'Login', 'URL', 'Password'])
-
-    passwords = Password.objects.all().values_list('name', 'login', 'url', 'password')
-    for password in passwords:
-        writer.writerow(password)
-
-    return response
-
-
-def import_passwords_csv(request):
-    if request.method == 'POST':
-        csv_file = request.FILES['file']
-        decoded_file = csv_file.read().decode('utf-8').splitlines()
-        reader = csv.DictReader(decoded_file)
-
-        for row in reader:
-            password = Password(name=row['Name'], url=row['URL'], login=row['Login'], password=row['Password'])
-            password.save()
-
-        return redirect('list')
-    else:
-        return HttpResponse('Only POST method is allowed')
