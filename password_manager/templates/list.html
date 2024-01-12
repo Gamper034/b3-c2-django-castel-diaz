@@ -5,6 +5,9 @@
       <h1 class="title">Liste des mots de passes</h1>
       <hr />
     </div>
+    <div class="has-text-right">
+      <button id="download-csv">Télécharger CSV</button>
+    </div>
     <table class="table is-bordered">
       <thead>
         <tr>
@@ -58,7 +61,7 @@
         </table>
     </div>
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
   // Fonction pour afficher le mot de passe en clair
   function togglePasswordVisibility(id, password) {
@@ -69,5 +72,20 @@
       passwordField.textContent = "••••••••••••";
     }
   }
+
+  // Déclenchement AJAX pour le téléchargement du fichier CSV
+  $('#download-csv').click(function() {
+    $.ajax({
+      url: 'export/csv/',
+      method: 'GET',
+      success: function(data) {
+        var blob = new Blob([data], { type: 'text/csv' });
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = 'passwords.csv';
+        link.click();
+      }
+    });
+  });
 </script>
 {% endblock %}

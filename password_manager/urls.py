@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from .views import export_passwords_csv
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -26,4 +27,5 @@ urlpatterns = [
     path("add_password/", views.add_password, name="add_password"),
     path("delete_password/<int:id>", views.delete_password, name="delete_password"),
     path("update_password/<int:id>", views.update_password, name="update_password"),
+    path('export/csv/', export_passwords_csv, name='export_passwords_csv'),
 ]

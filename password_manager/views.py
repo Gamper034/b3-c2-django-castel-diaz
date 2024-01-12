@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from .models import Password
 from django.template import loader
 from django.shortcuts import render, redirect
+import csv
 
 
 def list(request):
@@ -43,3 +44,16 @@ def update_password(request, id):
         password.password = request.POST.get("password")
         password.save()
         return redirect("list")
+
+def export_passwords_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="passwords.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Name', 'Login', 'URL', 'Password'])
+
+    passwords = Password.objects.all().values_list('name', 'login', 'url', 'password')
+    for password in passwords:
+        writer.writerow(password)
+
+    return response
