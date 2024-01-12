@@ -13,7 +13,8 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /usr/src/app
 RUN pip3 install django
-COPY . .
+
+
 
 
 RUN python manage.py collectstatic --noinput

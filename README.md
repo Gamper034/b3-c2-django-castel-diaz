@@ -44,7 +44,7 @@ Si vous avez Docker installé, vous pouvez construire et exécuter l'application
     ```
 2. Exécutez le conteneur Docker :
     ```
-    docker run -d -p 8000:8000 password_manager
+    docker run -v /chemin/vers/votre/projet:/usr/src/app -p 8000:8000 password_manager
     ```
 
 Ouvrez votre navigateur et accédez à `http://127.0.0.1:8000/`.
